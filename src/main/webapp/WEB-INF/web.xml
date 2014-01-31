@@ -18,7 +18,7 @@
     </context-param>
     <context-param>
         <param-name>liquibase.datasource</param-name>
-        <param-value>java:/hurraaDS</param-value>
+        <param-value>java:jboss/datasources/MySQLDS</param-value>
     </context-param>
     <context-param>
         <param-name>liquibase.onerror.fail</param-name>
