@@ -26,7 +26,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img alt="Home" src="<c:url value='/resources/images/logo/64x.png' />" style="float: left;"> 
+                        <img alt="Home" src="<c:url value='/resources/images/logo/24x.png' />" style="float: left;"> 
                         <fmt:message key="page.title" />
                     </a>
                 </div>
@@ -52,7 +52,7 @@
         <div class="container">
             <d:body />
         </div>
-    </div>
+    </div> 
     <div id="footer">
         <div class="container">
             <p class="text-muted"><fmt:message key="page.copyright" /></p>
