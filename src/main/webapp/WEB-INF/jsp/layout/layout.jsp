@@ -15,7 +15,7 @@
 <d:head />
 </head>
 <body>
-    <div class="wrap">
+    <div id="wrap">
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="${linkTo[IndexController].index}"><fmt:message key="menu.home" /></a></li>
-                        <li><a href="#issues"><fmt:message key="menu." /></li>
+                        <li><a href="#issues"><fmt:message key="menu.issues" /></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="menu.admin" /> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -53,7 +53,7 @@
             <d:body />
         </div>
     </div>
-    <div class="footer">
+    <div id="footer">
         <div class="container">
             <p class="text-muted"><fmt:message key="page.copyright" /></p>
         </div>
