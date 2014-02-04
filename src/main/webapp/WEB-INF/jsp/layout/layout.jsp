@@ -6,11 +6,13 @@
 <head>
 <title><fmt:message key="page.title" /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/resources/images/logo/16x.png'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/default.css'/>" type="text/css">
 <link rel="stylesheet" href="<c:url value='/resources/libs/bootstrap/css/bootstrap.min.css' />">
 <link rel="stylesheet" href="<c:url value='/resources/libs/bootstrap/css/bootstrap-theme.min.css' />">
 <script src="<c:url value='/resources/libs/bootstrap/js/bootstrap.min.js' />"></script>
+<script src="<c:url value='/resources/libs/jquery/js/jquery-2.1.0.min.js' />"></script>
 
 <d:head />
 </head>
@@ -18,7 +20,7 @@
     <div id="wrap">
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
-                <div class="navbar-header">
+                <div class="navbar-header" style="padding-top: 10px">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
