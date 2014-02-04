@@ -11,8 +11,6 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/default.css'/>" type="text/css">
 <link rel="stylesheet" href="<c:url value='/resources/libs/bootstrap/css/bootstrap.min.css' />">
 <link rel="stylesheet" href="<c:url value='/resources/libs/bootstrap/css/bootstrap-theme.min.css' />">
-<script src="<c:url value='/resources/libs/bootstrap/js/bootstrap.min.js' />"></script>
-<script src="<c:url value='/resources/libs/jquery/js/jquery-2.1.0.min.js' />"></script>
 
 <d:head />
 </head>
@@ -20,7 +18,7 @@
     <div id="wrap">
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
-                <div class="navbar-header" style="padding-top: 10px">
+                <div class="navbar-header" style="padding-top: -10px">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -28,7 +26,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img alt="Home" src="<c:url value='/resources/images/logo/24x.png' />" style="float: left;"> 
+                        <img alt="Home" src="<c:url value='/resources/images/logo/32x.png' />" style="float: left;"> 
                         <fmt:message key="page.title" />
                     </a>
                 </div>
@@ -60,5 +58,8 @@
             <p class="text-muted"><fmt:message key="page.copyright" /></p>
         </div>
     </div>
+    
+    <script src="<c:url value='/resources/libs/jquery/js/jquery-2.1.0.min.js' />"></script>
+    <script src="<c:url value='/resources/libs/bootstrap/js/bootstrap.min.js' />"></script>
 </body>
 </html>
