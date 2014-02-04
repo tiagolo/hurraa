@@ -4,15 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/resources/images/logo/16x.png'/>" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><fmt:message key="page.title" /></title>
-<link rel="stylesheet" href="<c:url value='/resources/css/pure-min.css'/>" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/resources/images/logo/16x.png'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/default.css'/>" type="text/css">
+<link rel="stylesheet" href="<c:url value='/resources/libs/bootstrap/css/bootstrap.min.css' />">
+<link rel="stylesheet" href="<c:url value='/resources/libs/bootstrap/css/bootstrap-theme.min.css' />">
+<script src="<c:url value='/resources/libs/bootstrap/js/bootstrap.min.js' />"></script>
+
 <d:head />
 </head>
 <body>
-    <header>
+    <header class="navbar navbar-inverse">
         <img alt="Home" src="<c:url value='/resources/images/logo/64x.png' />" style="float: left;">
         <h1>
             <fmt:message key="page.title" />
