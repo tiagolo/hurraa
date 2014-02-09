@@ -17,35 +17,27 @@
 * along with Hurraa. If not, see http://www.gnu.org/licenses/gpl-3.0.html.
 *
 */
-package org.cejug.hurraa.controller;
+package org.cejug.hurraa.producer;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 
-import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.core.SafeResourceBundle;
 
-@Controller
-public class IndexController {
-
-	private Result result;
-
-	public IndexController() {
-	}
-
-	@Inject
-	public IndexController(Result result) {
-		this.result = result;
-	}
-
-	@Path("/")
-	public void index() {
-		result.include("variable", "Hi!!!");
-	}
-
-	@Path("listar")
-	public void listar() {
-		result.include("text", "User Teste");
-	}
-
+@RequestScoped
+public class ValidationBundleProducer {
+    
+    @Inject
+    private Locale locale;
+    
+    @Produces
+    @ValidationMessages
+    public ResourceBundle getBundle(){
+        return  new SafeResourceBundle( ResourceBundle.getBundle("ValidationMessages" , locale ) );
+    }
+    
 }

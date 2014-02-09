@@ -17,35 +17,27 @@
 * along with Hurraa. If not, see http://www.gnu.org/licenses/gpl-3.0.html.
 *
 */
-package org.cejug.hurraa.controller;
+package org.cejug.hurraa.validation.impl;
 
 import javax.inject.Inject;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
-import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Result;
+import org.cejug.hurraa.model.bean.EquipmentModelBean;
+import org.cejug.hurraa.validation.EquipmentModelNameAvailable;
 
-@Controller
-public class IndexController {
+public class EquipmentModelNameAvailableValidator implements ConstraintValidator< EquipmentModelNameAvailable , String> {
+    
+    @Inject
+    private EquipmentModelBean equipmentModelBean;
+    
+    @Override
+    public void initialize(EquipmentModelNameAvailable constraintAnnotation) { }
 
-	private Result result;
-
-	public IndexController() {
-	}
-
-	@Inject
-	public IndexController(Result result) {
-		this.result = result;
-	}
-
-	@Path("/")
-	public void index() {
-		result.include("variable", "Hi!!!");
-	}
-
-	@Path("listar")
-	public void listar() {
-		result.include("text", "User Teste");
-	}
+    @Override
+    public boolean isValid(String value,
+            ConstraintValidatorContext context) {
+        return equipmentModelBean.isNameAvailable( value );
+    }
 
 }

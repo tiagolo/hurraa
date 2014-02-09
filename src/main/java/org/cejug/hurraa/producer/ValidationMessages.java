@@ -17,35 +17,24 @@
 * along with Hurraa. If not, see http://www.gnu.org/licenses/gpl-3.0.html.
 *
 */
-package org.cejug.hurraa.controller;
+package org.cejug.hurraa.producer;
 
-import javax.inject.Inject;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
 
-import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Result;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-@Controller
-public class IndexController {
+import javax.inject.Qualifier;
 
-	private Result result;
-
-	public IndexController() {
-	}
-
-	@Inject
-	public IndexController(Result result) {
-		this.result = result;
-	}
-
-	@Path("/")
-	public void index() {
-		result.include("variable", "Hi!!!");
-	}
-
-	@Path("listar")
-	public void listar() {
-		result.include("text", "User Teste");
-	}
-
+@Qualifier
+@Target({ METHOD , FIELD , PARAMETER })
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface ValidationMessages {
+    
+    
 }
