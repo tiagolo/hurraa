@@ -17,26 +17,37 @@
 * along with Hurraa. If not, see http://www.gnu.org/licenses/gpl-3.0.html.
 *
 */
-package org.cejug.hurraa.validation.impl;
+package org.cejug.hurraa.model.bean;
 
-import javax.inject.Inject;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import java.util.Date;
 
-import org.cejug.hurraa.model.bean.EquipmentTypeBean;
-import org.cejug.hurraa.validation.EquipmentTypeNameAvailable;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-public class EquipmentTypeNameAvailableValidator implements ConstraintValidator< EquipmentTypeNameAvailable , String> {
-    
-    @Inject
-    private EquipmentTypeBean equipmentTypeBean;
-    
-    @Override
-    public void initialize(EquipmentTypeNameAvailable constraintAnnotation) {  }
+import org.cejug.hurraa.model.Occurrence;
 
-    @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        return equipmentTypeBean.isNameAvailable(value);
-    }
+@Stateless
+public class OccurrenceBean extends AbstractBean<Occurrence> {
+	
+	public OccurrenceBean() {
+		super(Occurrence.class);
+	}
+	
+	@PersistenceContext
+	private EntityManager entityManager;
+	
+	@Override
+	public void insert(Occurrence entity) {
+		entity.setDateOfOppening( new Date() );
+		entity.setStatus( "Novo" );
+		super.insert(entity);
+	}
+	
+	
+	@Override
+	protected EntityManager getEntityManager() {
+		return entityManager;
+	}
 
 }

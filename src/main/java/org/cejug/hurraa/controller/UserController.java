@@ -19,17 +19,21 @@
 */
 package org.cejug.hurraa.controller;
 
+import java.util.ResourceBundle;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.cejug.hurraa.model.User;
 import org.cejug.hurraa.model.bean.UserBean;
+import org.cejug.hurraa.producer.ValidationMessages;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
 
 @Path("user")
@@ -38,15 +42,19 @@ public class UserController {
 
 	private Result result;
 	private UserBean userBean;
+	private ResourceBundle messagesBundle;
+	private ResourceBundle validationBundle;
 
 	public UserController() {
 		super();
 	}
 
 	@Inject
-	public UserController(Result result, UserBean userBean) {
+	public UserController(Result result, UserBean userBean , ResourceBundle bundle, @ValidationMessages ResourceBundle validationBundle) {
 		this.result = result;
 		this.userBean = userBean;
+		this.messagesBundle = bundle;
+		this.validationBundle = validationBundle;
 	}
 	
 	@Path(value = { "", "/" })
@@ -67,9 +75,12 @@ public class UserController {
 
 	@Post
 	@Path("insert")
-	public void insert(@Valid User user, Validator validator) {
+	public void insert(@Valid User user, String passwordConfirmation, Validator validator) {		
+		verifyPasswordConfirmation(user, passwordConfirmation, validator);
 		validator.onErrorForwardTo(UserController.class).form();
+		
 		userBean.insert(user);
+		result.include("message", messagesBundle.getString("insert.success") );
 		result.redirectTo("/user/list");
 	}
 
@@ -81,15 +92,27 @@ public class UserController {
 
 	@Post
 	@Path("update")
-	public void update(@Valid User user, Validator validator) {
+	public void update(@Valid User user, String passwordConfirmation, Validator validator) {		
+		verifyPasswordConfirmation(user, passwordConfirmation, validator);
 		validator.onErrorForwardTo(UserController.class).form();
+		
 		userBean.update(user);
+		result.include("message", messagesBundle.getString("update.success") );
 		result.redirectTo(UserController.class).list();
 	}
 
 	@Path("delete/{user.id}")
 	public void delete(User user) {
 		userBean.delete(user);
+		result.include("message", messagesBundle.getString("delete.success") );
 		result.redirectTo(UserController.class).list();
+	}
+	
+	protected void verifyPasswordConfirmation(User user, String passwordConfirmation, Validator validator) {
+		if ((user != null) && (user.getPassword() != null)) {
+			if (!user.getPassword().equals(passwordConfirmation)) {				
+				validator.add(new SimpleMessage("passwordConfirmation", validationBundle.getString("user.passwordConfirmationNotEquals")));
+			}
+		}
 	}
 }
